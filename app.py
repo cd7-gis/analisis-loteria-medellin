@@ -271,6 +271,7 @@ elif pestana == "3. Estadística Descriptiva":
     st.pyplot(fig3)
 
 # ------------------------------------------------------------------------------------------------
+## ------------------------------------------------------------------------------------------------
 # PESTAÑA 4: MODELO DE POISSON
 # ------------------------------------------------------------------------------------------------
 elif pestana == "4. Modelo de Probabilidad (Poisson)":
@@ -304,9 +305,9 @@ elif pestana == "4. Modelo de Probabilidad (Poisson)":
     resultados.append({
         "Apariciones (k)": k,
         "Observados (Realidad)": observados,
-        "Probabilidad Poisson": round(prob_k, 6),
-        "Esperados (Teórico)": round(esperados, 2),
-        "Diferencia": round(observados - esperados, 2),
+        "Probabilidad Poisson": round(prob_k, 4),
+        "Esperados (Teórico)": round(esperados, 4),
+        "Diferencia": round(observados - esperados, 4),
     })
 
   tabla_comparativa = pd.DataFrame(resultados)
@@ -315,34 +316,33 @@ elif pestana == "4. Modelo de Probabilidad (Poisson)":
   st.table(tabla_comparativa)
 
   # Gráfico comparativo de barras
-  # Gráfico comparativo de barras (Corregido)
-tabla_grafica = tabla_comparativa.melt(
-    id_vars="Apariciones (k)",
-    value_vars=["Observados (Realidad)", "Esperados (Teórico)"],
-    var_name="Tipo de Dato",
-    value_name="Cantidad de Combinaciones",  # Corregido aquí
-)
+  tabla_grafica = tabla_comparativa.melt(
+      id_vars="Apariciones (k)",
+      value_vars=["Observados (Realidad)", "Esperados (Teórico)"],
+      var_name="Tipo de Dato",
+      value_name="Cantidad de Combinaciones",
+  )
 
-fig4, ax4 = plt.subplots(figsize=(9, 4.5))
-sns.barplot(
-    data=tabla_grafica,
-    x="Apariciones (k)",
-    y="Cantidad de Combinaciones",
-    hue="Tipo de Dato",
-    palette=["#2563EB", "#F59E0B"],
-    ax=ax4,
-)
-plt.title("Comparativa: Distribución Observada vs. Modelo de Poisson")
-plt.xlabel("Número de Apariciones (k)")
-plt.ylabel("Cantidad de Combinaciones de 4 Dígitos")
-st.pyplot(fig4)
+  fig4, ax4 = plt.subplots(figsize=(9, 4.5))
+  sns.barplot(
+      data=tabla_grafica,
+      x="Apariciones (k)",
+      y="Cantidad de Combinaciones",
+      hue="Tipo de Dato",
+      palette=["#2563EB", "#F59E0B"],
+      ax=ax4,
+  )
+  plt.title("Comparativa: Distribución Observada vs. Modelo de Poisson")
+  plt.xlabel("Número de Apariciones (k)")
+  plt.ylabel("Cantidad de Combinaciones de 4 Dígitos")
+  st.pyplot(fig4)
 
-  st.success("""
-    ### 📌 Conclusión Estadística
-    Los resultados históricos de la Lotería de Medellín se ajustan de manera notable al modelo teórico de Poisson. 
-    Esto demuestra estadísticamente que el sistema de sorteos se comporta como un evento totalmente aleatorio e independiente, 
-    donde no existen sesgos de selección ni 'números calientes'. La repetición observada de números entra dentro del rango normal del azar a lo largo de casi 20 años.
-    """)
+  st.success(
+      "Conclusión: Los resultados históricos de la Lotería de Medellín se"
+      " ajustan de manera notable al modelo teórico de Poisson. Esto demuestra"
+      " estadísticamente que el sistema de sorteos opera bajo un comportamiento"
+      " completamente aleatorio e independiente."
+  )
 
 # ------------------------------------------------------------------------------------------------
 # PESTAÑA 5: SIMULACIÓN & CALCULADORA
