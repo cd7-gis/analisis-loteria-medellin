@@ -315,26 +315,27 @@ elif pestana == "4. Modelo de Probabilidad (Poisson)":
   st.table(tabla_comparativa)
 
   # Gráfico comparativo de barras
-  tabla_grafica = tabla_comparativa.melt(
-      id_vars="Apariciones (k)",
-      value_vars=["Observados (Realidad)", "Esperados (Teórico)"],
-      var_name="Tipo de Dato",
-      value_value_name="Cantidad de Combinaciones",
-  )
+  # Gráfico comparativo de barras (Corregido)
+tabla_grafica = tabla_comparativa.melt(
+    id_vars="Apariciones (k)",
+    value_vars=["Observados (Realidad)", "Esperados (Teórico)"],
+    var_name="Tipo de Dato",
+    value_name="Cantidad de Combinaciones",  # Corregido aquí
+)
 
-  fig4, ax4 = plt.subplots(figsize=(9, 4.5))
-  sns.barplot(
-      data=tabla_grafica,
-      x="Apariciones (k)",
-      y="Cantidad de Combinaciones",
-      hue="Tipo de Dato",
-      palette=["#2563EB", "#F59E0B"],
-      ax=ax4,
-  )
-  plt.title("Comparativa: Distribución Observada vs. Modelo de Poisson")
-  plt.xlabel("Número de Apariciones (k)")
-  plt.ylabel("Cantidad de Combinaciones de 4 Dígitos")
-  st.pyplot(fig4)
+fig4, ax4 = plt.subplots(figsize=(9, 4.5))
+sns.barplot(
+    data=tabla_grafica,
+    x="Apariciones (k)",
+    y="Cantidad de Combinaciones",
+    hue="Tipo de Dato",
+    palette=["#2563EB", "#F59E0B"],
+    ax=ax4,
+)
+plt.title("Comparativa: Distribución Observada vs. Modelo de Poisson")
+plt.xlabel("Número de Apariciones (k)")
+plt.ylabel("Cantidad de Combinaciones de 4 Dígitos")
+st.pyplot(fig4)
 
   st.success("""
     ### 📌 Conclusión Estadística
