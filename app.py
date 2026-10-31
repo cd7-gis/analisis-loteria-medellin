@@ -168,6 +168,7 @@ elif pestana == "2. Exploración & Limpieza (EDA)":
     )
 
 # ------------------------------------------------------------------------------------------------
+# # ------------------------------------------------------------------------------------------------
 # PESTAÑA 3: ESTADÍSTICA DESCRIPTIVA
 # ------------------------------------------------------------------------------------------------
 elif pestana == "3. Estadística Descriptiva":
@@ -235,7 +236,13 @@ elif pestana == "3. Estadística Descriptiva":
   st.markdown("---")
 
   st.subheader("Distribución de Frecuencia de Repetición de Números")
-  distribucion = frecuencia_numeros.value_counts().sort_index().reset_index()
+
+  # Corrección aplicada aquí con name= y renombrado de columnas
+  distribucion = (
+      frecuencia_numeros.value_counts()
+      .sort_index()
+      .reset_index(name="Cantidad de números")
+  )
   distribucion.columns = [
       "Veces que apareció el número",
       "Cantidad de números distintos",
