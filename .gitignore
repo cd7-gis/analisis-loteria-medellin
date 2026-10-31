@@ -1,0 +1,10 @@
+# Caché de Python y Jupyter
+__pycache__/
+.ipynb_checkpoints/
+
+# Archivos de configuración de VS Code
+.vscode/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
