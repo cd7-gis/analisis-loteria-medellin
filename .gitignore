@@ -1,6 +1,7 @@
 # Caché de Python y Jupyter
 __pycache__/
 .ipynb_checkpoints/
+.venv/
 
 # Archivos de configuración de VS Code
 .vscode/
